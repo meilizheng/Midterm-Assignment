@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Midterm_Assignment
 {
-    internal class Apartment
+    public class Apartment
     {
         string ApartmentNumber;
         string FirstName;
@@ -33,9 +33,7 @@ namespace Midterm_Assignment
             Random random = new Random();
             this.ApartmentNumber = apartmentNumber;
             this.isOccupied = false;
-        }
-
-       
+        }       
 
         public string ApartmentNumber1 { get => ApartmentNumber; set => ApartmentNumber = value; }
         public string FirstName1 { get => FirstName; set => FirstName = value; }

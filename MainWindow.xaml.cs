@@ -21,11 +21,14 @@ namespace Midterm_Assignment
     public partial class MainWindow : Window
     {
         List<Apartment>apartments = new List<Apartment>();
+        Apartment selectedApartment = null;
         public MainWindow()
         {
             InitializeComponent();
             Preload();
-            DisplayInformation();
+            DisplayTennantInformation();
+            lbDisplayTennantInfo.SelectedIndex = 0;
+           
         }
         public void Preload()
         {
@@ -37,12 +40,12 @@ namespace Midterm_Assignment
                 {
                     decimal monthly = rand.Next(1500, 4500);
                     float bedrooms = rand.Next(1, 4);
-                    //Apartment apartment = new Apartment(apart, "Alisa", "Bobik", bedrooms, monthly);
-                    //apartments.Add(apartment);
-                    //apartments.Add(new Apartment(apart, "Meili", "Zheng", bedrooms, monthly));
-                    //apartments.Add(new Apartment(apart, "Robert", "Kwan", bedrooms, monthly));
-                    //apartments.Add(new Apartment(apart, "Oliva", "Park", bedrooms, monthly));
-                    //apartments.Add(new Apartment(apart, "Sara", "Smith", bedrooms, monthly));
+                    Apartment apartment = new Apartment(apart, "Alisa", "Bobik", bedrooms, monthly);
+                    apartments.Add(apartment);
+                    apartments.Add(new Apartment(apart, "Meili", "Zheng", bedrooms, monthly));
+                    apartments.Add(new Apartment(apart, "Robert", "Kwan", bedrooms, monthly));
+                    apartments.Add(new Apartment(apart, "Oliva", "Park", bedrooms, monthly));
+                    apartments.Add(new Apartment(apart, "Sara", "Smith", bedrooms, monthly));
                 }
                 else
                 {
@@ -50,6 +53,20 @@ namespace Midterm_Assignment
                 }
             }
         }
+
+        private void btnDisplayTennant_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = lbDisplayTennantInfo.SelectedIndex;
+            if (selectedIndex < 0)
+            {
+                MessageBox.Show("Please select a tennant from the list box");
+            }
+            else
+            {
+                DisplayApartmentInfor(selectedApartment);
+            }
+        }
+       
 
         private void btnAddUpdateTenant_Click(object sender, RoutedEventArgs e)
         {
@@ -59,19 +76,54 @@ namespace Midterm_Assignment
             string MonthlyPay = txtMontylyPayments.Text;
             string TotalBedRoom = txtTotalbedroom.Text;
             string TennantInformation = $"Apart#: {ApartNumber} - First Name: {FirstName}- Last Name: {LastName} - Monthly Payment: {MonthlyPay} - Total Bedroom: {TotalBedRoom}";
-            lbDisplayTennantInfo.Items.Add(TennantInformation);            
+            lbDisplayTennantInfo.Items.Add(TennantInformation);  
+            rtbDisplay.AppendText("\n" + TennantInformation + " " + "Added!");
         }
 
-        public void DisplayInformation()
+       
+        public void DisplayTennantInformation()
         {
             lbDisplayTennantInfo.Items.Clear();
 
             for (int i = 0; i < apartments.Count; i++)
             {
                 lbDisplayTennantInfo.Items.Add(apartments[i]);
-            }
+            }            
         }
 
-       
+        
+        private void btnRemoveTennant_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = lbDisplayTennantInfo.SelectedIndex;
+            apartments.RemoveAt(selectedIndex);
+            string DisplayNotes = $"\n{apartments[selectedIndex]} Removed!";
+            rtbDisplay.AppendText(DisplayNotes);
+            DisplayTennantInformation();
+        }
+             
+              
+
+        public void DisplayApartmentInfor(Apartment apartment)
+        {
+            txtFirstName.Text = apartment.FirstName1;
+            txtLastName.Text = apartment.LastName1;
+            txtMontylyPayments.Text = apartment.MonthlyPayment1.ToString();
+            txtTotalbedroom.Text = apartment.NumberOfBedrooms.ToString();
+            txtAptNum.Text = apartment.ApartmentNumber1.ToString();
+            string TennantInfoDisplay = $"{apartment.ApartmentNumber1.ToString()} {apartment.NumberOfBedrooms.ToString()} {apartment.FirstName1} {apartment.LastName1} {apartment.MonthlyPayment1.ToString()}";
+            lbDisplayTennantInfo.Items.Add(TennantInfoDisplay);
+            rtbDisplay.AppendText("\n" + TennantInfoDisplay);
+            rtbDisplay.SelectAll();
+            rtbDisplay.Selection.Text = "";
+            rtbDisplay.AppendText("\n" + TennantInfoDisplay);
+
+        }
+
+        private void lbDisplayTennantInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedIndex = lbDisplayTennantInfo.SelectedIndex;
+            selectedApartment = apartments[selectedIndex];
+            DisplayApartmentInfor(selectedApartment);
+        }
     }
 }
