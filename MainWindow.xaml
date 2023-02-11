@@ -17,7 +17,7 @@
         </RichTextBox>
         <Label Content="" HorizontalAlignment="Left" Height="30" Margin="313,208,0,0" VerticalAlignment="Top" Width="100"/>
         <Button x:Name="btnRemoveTennant" Content="Remove Tennant" HorizontalAlignment="Left" Height="28" Margin="297,347,0,0" VerticalAlignment="Top" Width="180" Click="btnRemoveTennant_Click"/>
-        <Button x:Name="btnMonthlyDue" Content="Month Dues" HorizontalAlignment="Left" Height="28" Margin="297,394,0,0" VerticalAlignment="Top" Width="180"/>
+        <Button x:Name="btnMonthlyDue" Content="Month Dues" HorizontalAlignment="Left" Height="28" Margin="297,394,0,0" VerticalAlignment="Top" Width="180" Click="btnMonthlyDue_Click"/>
         <Label x:Name="lbTotalApartment" Content="Tatal Apartments" HorizontalAlignment="Left" Height="27" Margin="29,394,0,0" VerticalAlignment="Top" Width="97"/>
         <Canvas HorizontalAlignment="Left" Height="311" Margin="277,18,0,0" VerticalAlignment="Top" Width="220" Background="#FFF3F0F0">
             <Label x:Name="lbFirstName" Content="First Name" Height="25" Width="100" HorizontalAlignment="Left" Canvas.Left="10" Canvas.Top="10" VerticalAlignment="Top"/>
@@ -35,11 +35,12 @@
         </Canvas>
         <Canvas HorizontalAlignment="Left" Height="159" Margin="514,238,0,0" VerticalAlignment="Top" Width="258"/>
         <Canvas HorizontalAlignment="Left" Height="159" Margin="514,265,0,0" VerticalAlignment="Top" Width="258" Background="#FFCFE4A5">
-            <Label x:Name="lbPayment" Content="Payment" Height="24" Canvas.Left="10" Canvas.Top="10" Width="104"/>
-            <Button x:Name="btnPaymentInFull" Content="Payment In Full" Height="24" Canvas.Left="140" Canvas.Top="13" Width="108" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Label x:Name="lbPayment" Content="Payment" Height="27" Canvas.Left="10" Canvas.Top="10" Width="63"/>
+            <Button x:Name="btnPaymentInFull" Content="Payment In Full" Height="24" Canvas.Left="140" Canvas.Top="13" Width="108" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnPaymentInFull_Click"/>
             <TextBox x:Name="txtPartialPayment" Height="30" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="50" Width="238"/>
-            <Button x:Name="btnPartialPayment" Content="Partial Payment" Height="25" Canvas.Left="10" Canvas.Top="96" Width="238"/>
+            <Button x:Name="btnPartialPayment" Content="Partial Payment" Height="25" Canvas.Left="10" Canvas.Top="96" Width="238" Click="btnPartialPayment_Click"/>
             <Label x:Name="lbCurrentDue" Content="Current Due:" Height="23" Canvas.Left="10" Canvas.Top="131" Width="99" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPayInFull" Height="24" Canvas.Left="73" TextWrapping="Wrap" Canvas.Top="13" Width="67" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <TextBox x:Name="txtTotalAppartments" HorizontalAlignment="Left" Height="27" Margin="160,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
         <TextBox x:Name="txtCurrentDue" HorizontalAlignment="Left" Height="28" Margin="643,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>

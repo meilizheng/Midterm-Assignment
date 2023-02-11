@@ -33,7 +33,18 @@ namespace Midterm_Assignment
             Random random = new Random();
             this.ApartmentNumber = apartmentNumber;
             this.isOccupied = false;
-        }       
+        }
+
+        public Apartment(string FName, string LName, decimal monthlyPayment)
+        {
+            IsOccupied = true;
+            FirstName = FName;
+            LastName = LName;
+            MonthlyPayment = monthlyPayment;
+
+
+        }
+
 
         public string ApartmentNumber1 { get => ApartmentNumber; set => ApartmentNumber = value; }
         public string FirstName1 { get => FirstName; set => FirstName = value; }
@@ -42,7 +53,9 @@ namespace Midterm_Assignment
         public decimal MonthlyPayment1 { get => MonthlyPayment; set => MonthlyPayment = value; }
         public decimal CurrentBalance1 { get => CurrentBalance; set => CurrentBalance = value; }
         public string ApartmentNotes1 { get => ApartmentNotes; set => ApartmentNotes = value; }
-        public bool IsOccupied { get => isOccupied; set => isOccupied = value; }
+        public bool IsOccupied { set => isOccupied = false; }
+
+
 
         public override string ToString()
         {
@@ -56,5 +69,7 @@ namespace Midterm_Assignment
                 return $"Apartment#: {ApartmentNumber} -- vacant";
             }
         }
+
+       
     }
 }
