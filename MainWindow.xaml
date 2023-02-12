@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="#FF0E793C">
-        <ListBox x:Name="lbDisplayTennantInfo" HorizontalAlignment="Left" Height="365" Margin="29,18,0,0" VerticalAlignment="Top" Width="232" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lbDisplayTennantInfo_SelectionChanged"/>
+        <ListBox x:Name="lbDisplayTennantInfo" HorizontalAlignment="Left" Height="300" Margin="29,18,0,0" VerticalAlignment="Top" Width="232" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lbDisplayTennantInfo_SelectionChanged"/>
         <RichTextBox x:Name="rtbDisplay" HorizontalAlignment="Left" Height="220" Margin="514,18,0,0" VerticalAlignment="Top" Width="258">
             <FlowDocument>
                 <Paragraph>
@@ -44,6 +44,10 @@
         </Canvas>
         <TextBox x:Name="txtTotalAppartments" HorizontalAlignment="Left" Height="27" Margin="160,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
         <TextBox x:Name="txtCurrentDue" HorizontalAlignment="Left" Height="28" Margin="643,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
+        <Label x:Name="lboccupied" Content="Occupied" HorizontalAlignment="Left" Height="27" Margin="29,329,0,0" VerticalAlignment="Top" Width="97"/>
+        <Label x:Name="lbvacant" Content="vacant" HorizontalAlignment="Left" Height="28" Margin="29,361,0,0" VerticalAlignment="Top" Width="97"/>
+        <TextBox x:Name="txtoccupied" HorizontalAlignment="Left" Height="27" Margin="160,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="txtvacant" HorizontalAlignment="Left" Height="27" Margin="160,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
 
     </Grid>
 </Window>

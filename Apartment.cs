@@ -8,68 +8,62 @@ namespace Midterm_Assignment
 {
     public class Apartment
     {
-        string ApartmentNumber;
-        string FirstName;
-        string LastName;
+        string apartmentNumber;
+        string firstName;
+        string lastName;
         float numberOfBedrooms;
-        decimal MonthlyPayment;
-        decimal CurrentBalance;        
-        string ApartmentNotes;
+        decimal monthlyPayment;
+        decimal currentBalance;        
+        string apartmentNotes = string.Empty;
         bool isOccupied;
 
         public Apartment(string apartmentNumber, string firstName, string lastName, float numberOfBedrooms, decimal monthlyPayment)
         {
-            Random random = new Random();
-            ApartmentNumber = apartmentNumber;
-            FirstName = firstName;
-            LastName = lastName;
+            this.apartmentNumber = apartmentNumber;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.numberOfBedrooms = numberOfBedrooms;
-            MonthlyPayment = monthlyPayment;
+            this.monthlyPayment = monthlyPayment;
+
+            this.isOccupied = true; 
+        }
+
+        public Apartment(string apartmentNumber, bool isOccupied)
+        {            
+            this.apartmentNumber = apartmentNumber;
+            this.isOccupied = isOccupied;
+        }
+
+        public Apartment(string firstName, string lastName, decimal monthlyPayment)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.monthlyPayment = monthlyPayment;
+
             this.isOccupied = true;
         }
 
-        public Apartment(string apartmentNumber, bool IsOccupied)
-        {
-            Random random = new Random();
-            this.ApartmentNumber = apartmentNumber;
-            this.isOccupied = false;
-        }
-
-        public Apartment(string FName, string LName, decimal monthlyPayment)
-        {
-            IsOccupied = true;
-            FirstName = FName;
-            LastName = LName;
-            MonthlyPayment = monthlyPayment;
-
-
-        }
-
-
-        public string ApartmentNumber1 { get => ApartmentNumber; set => ApartmentNumber = value; }
-        public string FirstName1 { get => FirstName; set => FirstName = value; }
-        public string LastName1 { get => LastName; set => LastName = value; }
+        public string ApartmentNumber { get => apartmentNumber; set => apartmentNumber = value; }
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string LastName { get => lastName; set => lastName = value; }
         public float NumberOfBedrooms { get => numberOfBedrooms; set => numberOfBedrooms = value; }
-        public decimal MonthlyPayment1 { get => MonthlyPayment; set => MonthlyPayment = value; }
-        public decimal CurrentBalance1 { get => CurrentBalance; set => CurrentBalance = value; }
-        public string ApartmentNotes1 { get => ApartmentNotes; set => ApartmentNotes = value; }
-        public bool IsOccupied { set => isOccupied = false; }
-
-
+        public decimal MonthlyPayment { get => monthlyPayment; set => monthlyPayment = value; }
+        public decimal CurrentBalance { get => currentBalance; set => currentBalance = value; }
+        public string ApartmentNote { get => apartmentNotes; set => apartmentNotes = value; }
+        
+        public bool IsOccupied { get => isOccupied; set => isOccupied = value; }
 
         public override string ToString()
         {
 
             if (isOccupied)
             {
-                return $"Apartment#: {ApartmentNumber} -- First Name: {FirstName} -- Last Name: {LastName} -- Total of bedroom: {numberOfBedrooms} -- Monthly Payment: ${MonthlyPayment}";
+                return $"Apartment#: {apartmentNumber} -- First Name: {firstName} -- Last Name: {lastName} -- Total of bedroom: {numberOfBedrooms} -- Monthly Payment: ${monthlyPayment}";
             }
             else
             {
-                return $"Apartment#: {ApartmentNumber} -- vacant";
+                return $"Apartment#: {apartmentNumber} -- vacant";
             }
-        }
-
-       
+        }       
     }
 }

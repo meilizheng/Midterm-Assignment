@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace Midterm_Assignment
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         List<Apartment> apartments = new List<Apartment>();
@@ -30,18 +27,14 @@ namespace Midterm_Assignment
         {
             InitializeComponent();
 
-            // populate data
             Preload(); 
-            
-            // bind data
+          
             DisplayTennantInformation();
 
             ShowTotalApartment();
         }
 
-        /// <summary>
-        /// Generate data
-        /// </summary>
+  
         public void Preload()
         {
             Random rand = new Random();
@@ -104,10 +97,10 @@ namespace Midterm_Assignment
                 
                 Apartment selectedApt = (Apartment)lbDisplayTennantInfo.SelectedItem;
 
-                selectedApt.FirstName1 = txtFirstName.Text;
-                selectedApt.LastName1 = txtLastName.Text;
-                selectedApt.ApartmentNumber1 = txtAptNum.Text;
-                selectedApt.MonthlyPayment1 = decimal.Parse(txtMontylyPayments.Text);
+                selectedApt.FirstName = txtFirstName.Text;
+                selectedApt.LastName = txtLastName.Text;
+                selectedApt.ApartmentNumber = txtAptNum.Text;
+                selectedApt.MonthlyPayment = decimal.Parse(txtMontylyPayments.Text);
                 selectedApt.NumberOfBedrooms = float.Parse(txtTotalbedroom.Text);
 
                 lbDisplayTennantInfo.Items.Refresh(); // refreh updated data                
@@ -115,9 +108,7 @@ namespace Midterm_Assignment
             }  
         }
 
-        /// <summary>
-        /// Bind list apartments to list box lbDisplayTennantInfo
-        /// </summary>
+
         public void DisplayTennantInformation()
         {
             lbDisplayTennantInfo.Items.Clear();
@@ -144,38 +135,56 @@ namespace Midterm_Assignment
         public void DisplayApartmentInfor(Apartment apartment)
         {
             // populate the list of textboxes
-            txtFirstName.Text = apartment.FirstName1;
-            txtLastName.Text = apartment.LastName1;
-            txtMontylyPayments.Text = apartment.MonthlyPayment1.ToString();
+            txtFirstName.Text = apartment.FirstName;
+            txtLastName.Text = apartment.LastName;
+            txtMontylyPayments.Text = apartment.MonthlyPayment.ToString();
             txtTotalbedroom.Text = apartment.NumberOfBedrooms.ToString();
-            txtAptNum.Text = apartment.ApartmentNumber1.ToString();
+            txtAptNum.Text = apartment.ApartmentNumber.ToString();
+            int occupied = OccupiedVacant(apartments);
+            txtoccupied.Text = occupied.ToString();
+            txtvacant.Text = (apartments.Count - occupied).ToString();
 
             // right area for making full payment or partial payment
-            txtPayInFull.Text = apartment.MonthlyPayment1.ToString();            
+            txtPayInFull.Text = apartment.MonthlyPayment.ToString();            
             txtCurrentDue.Text = (decimal.Parse(txtPayInFull.Text) /3).ToString();
         }
 
         private void lbDisplayTennantInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowTotalApartment();
-           
+           if (lbDisplayTennantInfo.SelectedIndex == -1)
+            {
+                return;
+            }
             selectedApartment = apartments[lbDisplayTennantInfo.SelectedIndex];
-
             DisplayApartmentInfor(selectedApartment);
         }
 
-        /// <summary>
-        /// Show total of appartments 
-        /// </summary>
+    
         public void ShowTotalApartment()
         {          
             txtTotalAppartments.Text = lbDisplayTennantInfo.Items.Count.ToString();
         }
 
+       public int OccupiedVacant(List<Apartment> apartments)
+        {
+            int ocuupied = 0;
+            
+            foreach(Apartment apartment in apartments)
+            {
+                if (apartment.IsOccupied)
+                {
+                    ocuupied++;
+                }               
+            }
+            return ocuupied;
+        }
+
         private void btnPaymentInFull_Click(object sender, RoutedEventArgs e)
         {
             Apartment selectedPay = (Apartment)lbDisplayTennantInfo.SelectedItem;
-            txtPayInFull.Text = (selectedPay.MonthlyPayment1).ToString();            
+            
+            txtPayInFull.Text = (selectedPay.MonthlyPayment).ToString();            
         }
 
         private void btnPartialPayment_Click(object sender, RoutedEventArgs e)
@@ -187,7 +196,7 @@ namespace Midterm_Assignment
             {
                 decimal PartialPay = decimal.Parse(txtPartialPayment.Text);
 
-                decimal RestOfPay = selectedPartialPay.MonthlyPayment1 - PartialPay;
+                decimal RestOfPay = selectedPartialPay.MonthlyPayment - PartialPay;
                 string restOfPayment = RestOfPay.ToString();
                 rtbDisplay.AppendText($" \n your Outstanding balance is $ {restOfPayment} \n");
             }
@@ -200,7 +209,7 @@ namespace Midterm_Assignment
         private void btnMonthlyDue_Click(object sender, RoutedEventArgs e)
         {
             Apartment selectedtennant = (Apartment)lbDisplayTennantInfo.SelectedItem;
-            rtbDisplay.AppendText($" \n your Month Due is {selectedtennant.MonthlyPayment1}");
+            rtbDisplay.AppendText($" \n your Month Due is {selectedtennant.MonthlyPayment}");
         }
     }  
 }
